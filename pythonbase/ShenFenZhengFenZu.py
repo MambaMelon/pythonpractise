@@ -4,9 +4,9 @@ def main():
     length = len(str)
     if length == 6:
         print(str)
-    elif length > 6 and length <=14:
+    elif 14 >= length > 6:
         print(str[0:6] + " " + str[6:length])
-    elif length>14 and length<=18:
+    elif 18 >= length > 14:
         print(str[0:6] + " " + str[6:14] + " " + str[14:length])
     else:
         print("输入的身份证号不合法")
