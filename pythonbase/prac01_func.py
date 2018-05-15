@@ -26,6 +26,14 @@ class Person(object):
     def get_address(cls):
         return cls.address
 
+    # 所有环境下都统一显示的话，可以重构__repr__方法
+    def __repr__(self):
+        return self.name + self.gender
+
+    # 不同环境下支持不同的显示
+    def __str__(self):
+        return self.name
+
 
 if __name__ == "__main__":
     xm = Person('xiaoming', 'male', '1991-01-01', 'whtie')
@@ -37,3 +45,6 @@ if __name__ == "__main__":
     # 实例改变属性值不会影响其它类属性的值
     xm.address = 'gz'
     print(xh.get_address())
+
+    # 类信息打印
+    print(xm)
