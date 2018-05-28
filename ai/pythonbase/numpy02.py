@@ -41,6 +41,21 @@ if __name__ == "__main__":
 
                       [[2, 3, 6, 8],
                        [3, 4, 8, 9]]])
+    # [4 9].数组的切片
+    a03 = arr07[1][1][1:3]
 
+    # 花式索引
+    a04 = arr07[[0, 1, 2], [0, 1, 1]]
 
-    print(arr07[:, 1:3, 1:3])
+    # 通过transpose()或者属性T可以得到转置
+    arr08 = np.arange(40).reshape(5, -1)
+    a05 = arr08.transpose()
+    a06 = arr08.T
+
+    arr09 = np.array([[3, 9], [4, 6]])
+    # 横向拉伸2倍
+    a07 = np.tile(arr09, 2)
+    # 纵向拉伸2倍，横向拉升3倍
+    a08 = np.tile(arr09, (2,3))
+
+    print(a08)
