@@ -37,5 +37,7 @@ if __name__ == "__main__":
     plt.subplot(223)
     plt.plot(x2, m2, 'b--')
 
+    # xlabel,ylabel设置标签
+
 
     plt.show()
