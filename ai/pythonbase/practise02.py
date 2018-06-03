@@ -11,6 +11,8 @@ if __name__ == "__main__":
         'key': ['b', 'b', 'a', 'c', 'a', 'b'],
         'data1': range(6)
     })
+    # 离散特征的取值之间没有大小的意义
+    # 对离散型特征进行one-hot编码
     dummies = pd.get_dummies(df['key'], prefix='key')
 
     print(dummies)
