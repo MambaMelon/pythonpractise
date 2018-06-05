@@ -68,7 +68,17 @@ if __name__ == "__main__":
     # 定义一组应用于全部列的函数
     functions = ['count', 'mean', 'max']
     result = groupedd['total_bill', 'tip_pct'].agg(functions)
-    #
     result['tip_pct']
 
-    print()
+    # transform函数会将一个函数应用到各个分组
+    key = ['one', 'two', 'one', 'two', 'one']
+    res03 = people.groupby(key).mean()
+    res04 = people.groupby(key).transform(np.sum)
+
+    # apply应用函数于各分组片段上
+    def top(df, n=5, column='tip_pct'):
+        return df.sort_values(by=column)[-n:]
+    res05 = tips.groupby('smoker').apply(top)
+
+    print(res05)
+    # print(tips)
