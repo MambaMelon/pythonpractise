@@ -3,6 +3,8 @@
 # @Author  : melon
 
 import time
+from datetime import datetime, timedelta
+from dateutil.parser import parse
 
 if __name__ == "__main__":
     # 32400
@@ -26,4 +28,21 @@ if __name__ == "__main__":
     # time.struct_time(tm_year=2008, tm_mon=11, tm_mday=30, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=6, tm_yday=335, tm_isdst=-1)
     # s = time.strptime("30 Nov 08", "%d %b %y")
 
-    print()
+    # 两个时间之差 1 day, 0:00:01
+    delta = datetime(2018, 6, 6) - datetime(2018, 6, 4, 23, 59, 59)
+
+    # 加上一日期
+    start = datetime(2018, 6, 5)
+    # 2018-06-17 00:00:00
+    end1 = start + timedelta(12)
+    # 2018-06-29 00:00:00
+    end2 = start + 2 * timedelta(12)
+
+    # 字符串与datetime相互转换
+    stamp = datetime(2018, 6, 5)
+    res01 = str(stamp)
+    res02 = stamp.strftime('%Y/%m/%d')
+    res03 = datetime.strptime('2018-6-5', '%Y-%m-%d')
+
+    # 2018-06-05 10:59:09
+    parse('Tue Jun  5 10:59:09 2018')
