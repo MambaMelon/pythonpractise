@@ -6,16 +6,13 @@
 电流与功率之间的关系
 '''
 
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import StandardScaler
-import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
-from pandas import DataFrame
-import time
-from sklearn.externals import joblib
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 if __name__ == '__main__':
 
