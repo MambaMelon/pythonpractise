@@ -96,7 +96,7 @@ if __name__ == '__main__':
             # 如果全部alphas的值都结算到最后解了，那么不进行继续计算
             r = [0 for b in B if not b]
             if len(r) > 0:
-                break
+                break 
 
         # 3. 获取最优的alphas的值以及对应的0值
         min_a = a[0]
