@@ -6,6 +6,12 @@
 最小二乘法
 '''
 
+'''
+1.直接保存模型对象
+2.保存模型预测结果到数据库
+'''
+
+
 from sklearn.model_selection import train_test_split
 import numpy as np
 import matplotlib as mpl
@@ -33,6 +39,7 @@ if __name__ == '__main__':
     '''
     X_train, X_test, Y_train, Y_test = train_test_split(X_data, Y_data, test_size=0.2, random_state=0)
 
+    # 将DataFrame转化为矩阵
     X = np.mat(X_train)
     Y = np.mat(Y_train).reshape(-1, 1)
 
