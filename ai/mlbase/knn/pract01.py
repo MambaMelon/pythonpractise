@@ -21,8 +21,8 @@ def createDataSet():
 # k: number of neighbors to use for comparison
 # Output:the most popular class label
 def kNNClassify(newInput, dataSet, labels, k):
+    # 4
     numSamples = dataSet.shape[0]  # shape[0] stands for the num of row
-
     ## step 1: calculate Euclidean distance
     # tile(A, reps): Construct an array by repeating A reps times
     # the following copy numSamples rows for dataSet
@@ -62,10 +62,8 @@ if __name__ == "__main__":
     testX = array([1.2, 1.0])
     k = 3
     outputLabel = kNNClassify(testX, dataSet, labels, 3)
-    # print
-    # "Your input is:", testX, "and classified to class: ", outputLabel
-    #
-    # testX = array([0.1, 0.3])
-    # outputLabel = kNNClassify(testX, dataSet, labels, 3)
-    # print
-    # "Your input is:", testX, "and classified to class: ", outputLabel
+    print("Your input is:", testX, "and classified to class: ", outputLabel)
+
+    testX = array([0.1, 0.3])
+    outputLabel = kNNClassify(testX, dataSet, labels, 3)
+    print("Your input is:", testX, "and classified to class: ", outputLabel)
