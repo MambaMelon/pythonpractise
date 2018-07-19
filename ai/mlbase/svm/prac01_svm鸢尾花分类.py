@@ -30,7 +30,7 @@ if __name__ == '__main__':
     y = pd.Categorical(y).codes
     # 取出第一列和第二列
     # x = x[[0, 1]]
-    x =  data.iloc[:, 0:2]
+    x = data.iloc[:, 0:2]
 
     x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=0, train_size=0.8)
 
@@ -67,3 +67,44 @@ if __name__ == '__main__':
     # 计算决策函数的结构值以及预测值(decision_function计算的是样本x到各个分割平面的距离<也就是决策函数的值>)
     print('decision_function:\n', clf.decision_function(x_train))
     print('\npredict:\n', clf.predict(x_train))
+
+    # 画图
+    N = 500
+    # 每列的最大值和最小值
+    x1_min, x2_min = x.min()
+    x1_max, x2_max = x.max()
+
+    t1 = np.linspace(x1_min, x1_max, N)
+    t2 = np.linspace(x2_min, x2_max, N)
+    # 生成网格采样点
+    x1, x2 = np.meshgrid(t1, t2)
+    # 测试点
+    grid_show = np.dstack((x1.flat, x2.flat))[0]
+
+    grid_hat = clf.predict(grid_show)  # 预测分类值
+    grid_hat = grid_hat.reshape(x1.shape)  # 使之与输入的形状相同
+
+    cm_light = mpl.colors.ListedColormap(['#00FFCC', '#FFA0A0', '#A0A0FF'])
+    cm_dark = mpl.colors.ListedColormap(['g', 'r', 'b'])
+    plt.figure(facecolor='w')
+
+    # 区域图
+    plt.pcolormesh(x1, x2, grid_hat, cmap=cm_light)
+    # 训练样本点
+    plt.scatter(x[0], x[1], c=y, edgecolors='k', s=50, cmap=cm_dark)  # 样本
+    # 测试数据集
+    plt.scatter(x_test[0], x_test[1], s=120, facecolors='None', edgecolors='k', zorder=10)  # 圈中测试集样本
+    # lable列表
+    plt.xlabel(iris_feature[0], fontsize=13)
+    plt.ylabel(iris_feature[1], fontsize=13)
+    plt.xlim(x1_min, x1_max)
+    plt.ylim(x2_min, x2_max)
+    plt.title(u'鸢尾花SVM特征分类', fontsize=16)
+
+    # True 显示网格
+    # linestyle 设置线显示的类型(一共四种)
+    # color 设置网格的颜色
+    # linewidth 设置网格的宽度
+    plt.grid(b=True, ls=':')
+    plt.tight_layout(pad=1.5)
+    plt.show()
