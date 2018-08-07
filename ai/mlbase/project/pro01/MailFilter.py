@@ -77,44 +77,24 @@ def process_file(file_path):
     result_str += content_dict.get('content', 'unknown').replace(',', ' ').strip()
     return result_str
 
-# 开始进行数据处理
-# index_dict = read_index_file('../../datasets/full/index')
-# list0 = os.listdir('../data/data')
-# for l1 in list0:
-#     l1_path = '../data/data/' + l1
-#     print('开始处理文件夹:' + l1_path)
-#     list1 = os.listdir(l1_path)
-#
-#     write_file_path = '../data/process01_' + l1
-#     with  open(write_file_path, "w", encoding='utf-8') as writer:
-#         for l2 in list1:
-#             l2_path = l1_path + "/" + l2
-#             # 得到具体的文件内容后，进行文件数据的读取
-#             index_key = "/" + l1 + "/" + l2
-#
-#             if index_key in index_dict:
-#                 # 读取数据
-#                 content_str = process_file(l2_path)
-#                 # 添加标签
-#                 content_str += "," + index_dict[index_key] + "\n"
-#                 # 进行数据输出
-#                 writer.writelines(content_str)
-
 if __name__ == "__main__":
 
     # 1.开始进行数据处理
     index_dict = read_index_file('../../datasets/index')
 
     # 2.数据处理
-    listDir = os.listdir('../../datasets/mail')
-    for list in listDir:
-        write_file_path = "../../datasets/mail/processmail_" + list
-        with  open(write_file_path, "w", encoding='utf-8') as writer:
-            # 读取数据
-            content_str = process_file(list)
+    listDir = os.listdir('../../datasets/000')
+    write_file_path = 'e:/temp/a.txt'
+    with open(write_file_path, 'w', encoding='utf-8') as writer:
+        for list in listDir:
+            path = '../../datasets/000' + '/' + list
+            index_key = '/000/' + list
+            # 得到具体的文件内容后，进行文件数据的读取
+            content_str = process_file(path)
             # 添加标签
             content_str += "," + index_dict[index_key] + "\n"
-            # 数据输出
+            # 进行数据输出
             writer.writelines(content_str)
 
-    # print(index_dict)
+
+
