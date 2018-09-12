@@ -6,8 +6,8 @@ import xlrd
 
 if __name__ == '__main__':
 
-    file = './datasets/excel.xls'
-    wb = xlrd.open_workbook(file)
+    files = './datasets/excel.xls'
+    wb = xlrd.open_workbook(files)
     ws = wb.sheet_by_name('Sheet1')
 
     dataset = []
