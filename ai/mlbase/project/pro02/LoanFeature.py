@@ -79,4 +79,25 @@ if __name__ == '__main__':
     df.loan_status.replace('Does not meet the credit policy. Status:Charged Off', np.nan, inplace=True)
     df['loan_status'].value_counts()
 
-    print()
+    # 计算关联信息
+    cor = df.corr()
+    cor.loc[:, :] = np.tril(cor, k=-1)
+    cor = cor.stack()
+    # cor = cor[(cor > 0.7) | (cor < -0.7)]
+    # 删除相关性比较强的特征属性
+    df.drop(['funded_amnt', 'funded_amnt_inv', 'installment'], 1, inplace=True)
+
+    # df.isnull().sum()
+    # 数值为空的进行填充，填充要不填充默认值，0/1; 要不中值，均值
+    df.fillna(0.0, inplace=True)
+    df.fillna(0, inplace=True)
+
+    print(df.shape)
+
+    # 哑扁码操作
+    df = pd.get_dummies(df)
+
+    print(df.shape)
+    # 模型的输出
+    df.to_csv('./features01.csv', header=True, index=False)
+
