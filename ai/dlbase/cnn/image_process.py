@@ -31,9 +31,9 @@ def show_image_tensor(image_tensor):
 # 1. 交互式会话启动
 sess = tf.InteractiveSession()
 
-image_path = 'data/xiaoren.png'
-# image_path = 'data/gray.png'
-# image_path = 'data/black_white.jpg'
+image_path = 'mnist/xiaoren.png'
+# image_path = 'mnist/gray.png'
+# image_path = 'mnist/black_white.jpg'
 
 # 一、图像格式的转换
 # 读取数据
