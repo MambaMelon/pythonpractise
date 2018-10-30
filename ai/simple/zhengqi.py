@@ -10,13 +10,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.cross_validation import cross_val_score, ShuffleSplit
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import chi2
 
 if __name__ == '__main__':
 
     # (2888, 39)
     df = pd.read_csv(r'F:\dd\20181029_zhengqi\zhengqi_train.txt', sep='\t')
-
 
     # 计算object类型的所有列的对应数据的count值
     # for col in df.select_dtypes(include=['float64']).columns:
@@ -25,14 +25,11 @@ if __name__ == '__main__':
     X = df.drop(labels=['target'], axis=1)
     Y = df['target']
 
-    rf = RandomForestRegressor(n_jobs=-1)
+    result = SelectKBest(chi2, k=38).fit_transform(X, Y)
 
-    scores = []
-    for i in range(X.shape[1]):
-        score = cross_val_score(rf, X[:, i:i + 1], Y, scoring="r2",
-                                cv=ShuffleSplit(len(X), 3, .3))
-        scores.append((round(np.mean(score), 3), X[i]))
-    print(sorted(scores, reverse=True))
+    print(result)
+
+
 
     x_train, x_test, y_train, y_test = train_test_split(X, Y, train_size=0.9, random_state=28)
 
