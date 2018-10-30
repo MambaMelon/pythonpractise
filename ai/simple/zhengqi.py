@@ -17,6 +17,7 @@ if __name__ == '__main__':
 
     # (2888, 39)
     df = pd.read_csv(r'F:\dd\20181029_zhengqi\zhengqi_train.txt', sep='\t')
+    x_test = pd.read_csv(r'F:\dd\20181029_zhengqi\zhengqi_test.txt', sep='\t')
 
     # 计算object类型的所有列的对应数据的count值
     # for col in df.select_dtypes(include=['float64']).columns:
@@ -24,18 +25,6 @@ if __name__ == '__main__':
 
     X = df.drop(labels=['target'], axis=1)
     Y = df['target']
-
-    result = SelectKBest(chi2, k=38).fit_transform(X, Y)
-
-    print(result)
-
-
-
-    x_train, x_test, y_train, y_test = train_test_split(X, Y, train_size=0.9, random_state=28)
-
-    ss = StandardScaler()
-    x_train = ss.fit_transform(x_train)
-    x_test = ss.transform(x_test)
 
     # 0.72, 0.70, 0.12
     # lir = LinearRegression()
@@ -45,10 +34,16 @@ if __name__ == '__main__':
 
     # 0.97, 0.84, 0.14
     rfr = RandomForestRegressor(n_jobs=-1)
-    rfr.fit(x_train, y_train)
+    rfr.fit(X, Y)
+    pre = rfr.predict(X)
     y_predict = rfr.predict(x_test)
-    mse = np.average((y_predict - y_test) ** 2)
 
-    print(rfr.score(x_train, y_train))
-    print(rfr.score(x_test, y_test))
+    mse = np.average((pre - Y) ** 2)
+
+    # 输出结果
+    # data = pd.DataFrame(y_predict)
+    # data.to_csv(r'F:\dd\20181029_zhengqi\zhengqi_predict.txt', header=False, index=False)
+
+
     print(mse)
+    print(rfr.score(x_test, y_predict))
