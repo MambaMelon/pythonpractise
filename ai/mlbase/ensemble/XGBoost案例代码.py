@@ -15,7 +15,7 @@ warnings.filterwarnings(action='ignore', category=RuntimeWarning)
 
 # 1. 加载数据
 names = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT', 'MEDV']
-file_path = '../datas/boston_housing.data'
+file_path = '../datas/boston_housing.mnist'
 df = pd.read_csv(filepath_or_buffer=file_path, header=None, sep='\\s+', names=names)
 
 # 2. 获取特征矩阵X和目标属性Y

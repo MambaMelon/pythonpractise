@@ -16,9 +16,9 @@ if __name__ == '__main__':
     mpl.rcParams['axes.unicode_minus'] = False
 
     # 1. 加载数据
-    # file_path = 'C:/workspace/python/sklearn07/datas/iris.data'
-    # file_path = 'file:///C:/workspace/python/sklearn07/datas/iris.data'
-    file_path = '../datasets/iris.data'
+    # file_path = 'C:/workspace/python/sklearn07/datas/iris.mnist'
+    # file_path = 'file:///C:/workspace/python/sklearn07/datas/iris.mnist'
+    file_path = '../datasets/iris.mnist'
     names = ['sepal length', 'sepal width', 'petal length', 'petal width', 'cla']
     df = pd.read_csv(file_path, header=None, names=names)
 
