@@ -17,7 +17,7 @@ D——用户对商品全集的行为数据集合
 
 if __name__ == '__main__':
 
-    # 最多显示100行
+    # 最多显示100行；
     pd.set_option('display.max_colwidth', 100)
     # 最多显示100列
     pd.set_option('display.max_columns', 100)
