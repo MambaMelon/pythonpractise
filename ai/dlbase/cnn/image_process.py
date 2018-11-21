@@ -60,27 +60,24 @@ AREA = 3 面积插值
 """
 # images: 给定需要进行大小转换的图像对应的tensor对象，格式为：[height, width, num_channels]或者[batch, height, width, num_channels]
 # API返回值和images格式一样，唯一区别是height和width变化为给定的值
-resize_image_tensor = tf.image.resize_images(images=image_tensor, size=(100, 100), method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-show_image_tensor(resize_image_tensor)
+# resize_image_tensor = tf.image.resize_images(images=image_tensor, size=(100, 100), method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+# show_image_tensor(resize_image_tensor)
 
 # 三、图片的剪切&填充
 # 图片重置大小，通过图片的剪切或者填充（从中间开始计算新图片的大小）
-# crop_or_pad_image_tensor = tf.image.resize_image_with_crop_or_pad(image_tensor, 200, 200)
+# crop_or_pad_image_tensor = tf.image.resize_image_with_crop_or_pad(image_tensor, 500, 500)
 # show_image_tensor(crop_or_pad_image_tensor)
 
 # 中间等比例剪切
-# central_crop_image_tensor = tf.image.central_crop(image_tensor, central_fraction=0.2)
+# central_crop_image_tensor = tf.image.central_crop(image_tensor, central_fraction=0.5)
 # show_image_tensor(central_crop_image_tensor)
 
 # 填充数据（给定位置开始填充）
-# pad_to_bounding_box_image_tensor = tf.image.pad_to_bounding_box(image_tensor, offset_height=400, offset_width=490, target_height=1000, target_width=1000)
-
-
+# pad_to_bounding_box_image_tensor = tf.image.pad_to_bounding_box(image_tensor, offset_height=200, offset_width=200, target_height=1000, target_width=1000)
 # show_image_tensor(pad_to_bounding_box_image_tensor)
 
 # 剪切数据（给定位置开始剪切）
 # crop_to_bounding_box_image_tensor = tf.image.crop_to_bounding_box(image_tensor, offset_height=10, offset_width=40, target_height=200, target_width=300)
-
 # show_image_tensor(crop_to_bounding_box_image_tensor)
 
 # 四、旋转
@@ -167,5 +164,5 @@ show_image_tensor(resize_image_tensor)
 # show_image_tensor(per_image_standardization_image_tensor)
 
 # 七、噪音数据的加入
-# noisy_image_tensor = image_tensor + tf.cast(5 * tf.random_normal(shape=[600, 510, 3], mean=0, stddev=0.1), tf.uint8)
-# show_image_tensor(noisy_image_tensor)
+noisy_image_tensor = image_tensor + tf.cast(5 * tf.random_normal(shape=[600, 510, 3], mean=0, stddev=0.1), tf.uint8)
+show_image_tensor(noisy_image_tensor)
