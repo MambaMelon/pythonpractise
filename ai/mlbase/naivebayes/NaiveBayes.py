@@ -40,6 +40,7 @@ class NaiveBayes:
     # 处理X_train
     def summarize(self, train_data):
         summaries = [(self.mean(i), self.stdev(i)) for i in zip(*train_data)]
+        return summaries
 
     # 分别求出数学期望和标准差
     def fit(self, X, y):
