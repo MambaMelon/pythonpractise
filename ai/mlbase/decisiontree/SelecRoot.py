@@ -12,6 +12,7 @@ import math
 from math import log
 import pprint
 
+
 def create_data():
     datasets = [['青年', '否', '否', '一般', '否'],
                ['青年', '否', '否', '好', '否'],
@@ -78,5 +79,12 @@ if __name__ == '__main__':
     datasets, labels = create_data()
     train_data = pd.DataFrame(datasets, columns=labels)
 
+    # print(train_data.iloc[:, :-1])
+    # print(train_data.iloc[:, -1])
+    # print(train_data.columns[:-1])
 
-    info_gain_train(np.array(datasets))
+    # info_gain_train(np.array(datasets))
+
+    from id3 import DTree
+    dTree = DTree(0.1)
+    dTree.train(train_data)
