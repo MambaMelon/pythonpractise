@@ -3,16 +3,42 @@
 # @Author  : melon
 
 import tensorflow as tf
+import numpy as np
+from tensorflow.python.framework import ops
+import matplotlib.pyplot as plt
 
 
-"""可视化"""
+"""tensorflow实现线性回归"""
 
-if __name__ == '__main__':
+ops.reset_default_graph()
 
-    with tf.name_scope('input1'):
-        input1 = tf.constant([1.0, 2.0, 3.0], name="input1")
-    with tf.name_scope('input2'):
-        input2 = tf.Variable(tf.random_uniform([3]), name="input2")
-    output = tf.add_n([input1, input2], name="add")
-    writer = tf.summary.FileWriter(r"E:\workspace_github\visualization", tf.get_default_graph())
-    writer.close()
+sess = tf.Session()
+
+# 数据数量与批量大小
+data_amount = 101
+batch_size = 25
+
+# 造数据y=5x+3
+x_vals = np.linspace(20, 200, data_amount)
+y_vals = np.multiply(x_vals, 5)
+y_vals = np.add(y_vals, 3)
+
+# 生成一个N(0, 15)的正太分布一维数组
+y_offset_vals = np.random.normal(0, 15, data_amount)
+
+x_data = tf.placeholder(shape=[None, 1], dtype=tf.float32)
+y_target = tf.placeholder(shape=[None, 1], dtype=tf.float32)
+
+# 构造K
+K = tf.Variable(tf.random_normal(mean=0, shape=[1, 1]))
+calcY = tf.add(tf.matmul(x_data, K), 3)
+
+# 真实值与模型估算的差值
+loss = tf.reduce_mean(tf.square(y_target - calcY))
+
+init = tf.global_variables_initializer()
+sess.run(int)
+
+
+
+
