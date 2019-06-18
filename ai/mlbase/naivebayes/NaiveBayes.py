@@ -14,7 +14,7 @@ def create_data():
     df['label'] = iris.target
     df.columns = ['sepal length', 'sepal width', 'petal length', 'petal width', 'label']
     data = np.array(df.iloc[:100, :])
-    # print(data)
+
     return data[:,:-1], data[:,-1]
 
 class NaiveBayes:
@@ -81,8 +81,7 @@ if __name__ == '__main__':
     model = NaiveBayes()
     model.fit(X_train, y_train)
 
-    print(model.predict([4.4,  3.2,  1.3,  0.2]))
-
+    print(model.predict([4.4,  3.2,  1.3,  5.0]))
 
 
 
